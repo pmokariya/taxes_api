@@ -4,6 +4,7 @@ class CreateItemTaxes < ActiveRecord::Migration[6.0]
       t.string :tax_name
       t.string :tax_type
       t.string :tax
+      t.references :item, null: false, foreign_key: true
 
       t.timestamps
     end

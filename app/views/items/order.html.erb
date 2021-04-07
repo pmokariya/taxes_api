@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1> Your selected Items with total price</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Orignal Rate</th>
+      <th>Price with Tax</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @selected_items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.rate %></td>
+        <td><%= item.price_with_all_taxes %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= "totle price: #{@total_price}" %>
+<br>

@@ -22,18 +22,21 @@ ActiveRecord::Schema.define(version: 2021_04_07_073022) do
     t.string "tax_name"
     t.string "tax_type"
     t.string "tax"
+    t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_item_taxes_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "rate"
-    t.integer "item_category_id_id", null: false
+    t.integer "item_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_category_id_id"], name: "index_items_on_item_category_id_id"
+    t.index ["item_category_id"], name: "index_items_on_item_category_id"
   end
 
-  add_foreign_key "items", "item_category_ids"
+  add_foreign_key "item_taxes", "items"
+  add_foreign_key "items", "item_categories"
 end

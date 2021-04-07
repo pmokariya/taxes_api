@@ -25,6 +25,11 @@
     <%= form.label :tax %>
     <%= form.text_field :tax %>
   </div>
+ 
+  <div class="field">
+    <%= form.label :item %>
+    <%= form.collection_select :item_id, Item.order(:name),:id,:name %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

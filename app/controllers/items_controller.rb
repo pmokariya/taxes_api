@@ -1,9 +1,16 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
 
+  def order
+    item_ids = params[:selected_items]
+    @selected_items = Item.where(id: item_ids)
+    @total_price = @selected_items.map { |string| string.price_with_all_taxes }.sum
+  end
+
   # GET /items or /items.json
   def index
-    @items = Item.all
+    @item_categories = ItemCategory.all
+    @items = Item.includes(:item_tax).all
   end
 
   # GET /items/1 or /items/1.json
